@@ -118,32 +118,15 @@ public class MenuFrame  extends JFrame {
         List<Conversor> conversiones = this.conversionesController.obtenerConversiones();
         conversiones.forEach(conversor -> comboOpcionConversion.addItem(conversor));
         
-        //var categorias = this.categoriaController.listar();
-
-        /*textoNombre.setBounds(10, 25, 265, 20);
-        textoDescripcion.setBounds(10, 65, 265, 20);
-        textoCantidad.setBounds(10, 105, 265, 20);*/
+       
         botonElegirConversion = new JButton("OK");
         botonElegirConversion.setBounds(55,55,80,25);
         botonCancel = new JButton("Cancel");
-        botonCancel.setBounds(145,55,80,25);
-        /*botonGuardar = new JButton("Guardar");
-        botonLimpiar = new JButton("Limpiar");
-        botonGuardar.setBounds(10, 175, 80, 20);
-        botonLimpiar.setBounds(100, 175, 80, 20);*/
+        botonCancel.setBounds(145,55,80,25); 
         container.add(labelOpcionConversion);
         container.add(comboOpcionConversion);
         container.add(botonElegirConversion);
-        container.add(botonCancel);
-        /*container.add(labelNombre);
-        container.add(labelDescripcion);
-        container.add(labelCantidad);
-        container.add(labelCategoria);
-        container.add(textoNombre);
-        container.add(textoDescripcion);
-        container.add(textoCantidad);
-        container.add(botonGuardar);
-        container.add(botonLimpiar);*/
+        container.add(botonCancel); 
     }
 
     private void configurarAccionesDelFormulario() {
@@ -192,7 +175,7 @@ public class MenuFrame  extends JFrame {
     protected void elegir() {
     	Conversor conversor = (Conversor) comboOpcionConversion.getSelectedItem(); 
 		System.out.println(conversor);
-		new FormularioValorFrame(conversor);
+		new FormularioValorFrame(this,conversor);
 	}
 
 	private void abrirReporte() {
