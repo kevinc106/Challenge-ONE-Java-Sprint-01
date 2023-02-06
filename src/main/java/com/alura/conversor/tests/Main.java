@@ -11,10 +11,12 @@ import com.alura.conversor.interfaces.Conversor;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		
 		List<Conversor> conversores = new ArrayList<Conversor>();
-		Conversor conversorDeMoneda = new ConversorDeMoneda();
+		//Conversor conversorDeMoneda = new ConversorDeMoneda();
 		Conversor conversorDeTiempo = new ConversorDeTiempo(); 
-		conversores.add(conversorDeMoneda);
+		//conversores.add(conversorDeMoneda);
 		conversores.add(conversorDeTiempo); 
 		
 		for (Conversor conversor : conversores) {

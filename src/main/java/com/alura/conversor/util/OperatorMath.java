@@ -2,15 +2,15 @@ package com.alura.conversor.util;
 
 import java.math.BigDecimal;
 
-public class Moneda {
+public class OperatorMath {
 	
-	private static Moneda moneda;
+	private static OperatorMath operatorMath; 
 
-	public static Moneda getInstance() {
-		if(moneda==null) {
-			moneda = new Moneda();
+	public static OperatorMath getInstance() {
+		if(operatorMath==null) {
+			operatorMath = new OperatorMath();
 		}
-		return moneda; 
+		return operatorMath; 
 	}
 	
 	public BigDecimal multiplicar(BigDecimal big1,BigDecimal big2) {
@@ -24,4 +24,6 @@ public class Moneda {
 		BigDecimal res = big1.divide(big2); 
 		return res;
 	}
+	 
+	
 }

@@ -16,29 +16,31 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.alura.conversor.controller.ConversionesController;
 import com.alura.conversor.interfaces.Conversor;
 
 public class FormularioValorFrame extends JFrame{
 	 
 	private static final long serialVersionUID = 1L;
 	private Conversor conversor;
+	private ConversionesController conversionesController;
 	private JLabel labelIngresaCantidad;
 	private JTextField inputValor;
 	private JButton botonConvertir;
 	private JButton botonCancel;
 	private JLabel labelIcono;
 
-	public FormularioValorFrame(MenuFrame menuFrame, Conversor conversor) {
+	public FormularioValorFrame(MenuFrame menuFrame, ConversionesController conversionesController) {
 		 
 		super("Input");
-		this.conversor = conversor;
+		this.conversionesController = conversionesController;
 		
 		Container container = getContentPane();
         setLayout(null);
         
         configurarCamposDelFormulario(container);
 
-        configurarTablaDeContenido(container); 
+        configurarContenedor(container); 
 
         configurarAccionesDelFormulario();
 	}
@@ -49,15 +51,25 @@ public class FormularioValorFrame extends JFrame{
              	convertir();
             }
         });
+    	botonCancel.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			} 
+    	});
 	}
 
 	protected void convertir() {  
-		if (inputValor.getText().isBlank() || 
-				!inputValor.getText().trim().matches("[+]?\\d+(\\.\\d+)?([Ee][+]?\\d+)?")) {
+		String valor = inputValor.getText();
+		if (valor.isBlank() || 
+				!valor.trim().matches("[+]?\\d+(\\.\\d+)?([Ee][+]?\\d+)?")) {
 			JOptionPane.showMessageDialog(this, "Valor no valido");
 			return;
         }else{
-        	System.out.println("entra");            
+        	System.out.println(new BigDecimal(valor.trim()));
+        	this.conversionesController.setValor(new BigDecimal(valor.trim()));
+        	//conversor.setValor(new BigDecimal(valor.trim()));
+    		setVisible(false);
+    		new SeleccionarConversionFrame(this,conversionesController);
         } 
 	}
 
@@ -87,7 +99,7 @@ public class FormularioValorFrame extends JFrame{
         container.add(botonCancel); 
 	}
 
-	private void configurarTablaDeContenido(Container container) {
+	private void configurarContenedor(Container container) {
 		setSize(400, 130);
         setVisible(true);  
         setLocationRelativeTo(null);

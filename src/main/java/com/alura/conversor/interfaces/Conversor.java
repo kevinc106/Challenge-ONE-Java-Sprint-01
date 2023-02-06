@@ -1,7 +1,16 @@
 package com.alura.conversor.interfaces;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-public interface Conversor {  
-	public BigDecimal obtenerConversion(BigDecimal valor);
+import com.alura.conversor.model.Conversion;
+
+public interface Conversor {   
+	
+	public String obtenerTitulo();
+	
+	public String obtenerDescripcion();
+
+	public List<Conversion> obtenerTiposDeConversiones();
+ 
 }
