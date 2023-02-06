@@ -19,11 +19,15 @@ public class ConversionesController {
 	public ConversionesController() {
 		if(this.conversores==null) {
 			this.conversores = new ArrayList<>();
-			Conversor conversorADolar = new ConversorDeMoneda();
+			/*Conversor conversorADolar = new ConversorDeMoneda();
 			Conversor conversorAEuro = new ConversorDeTiempo(); 
 			conversores.add(conversorADolar);
-			conversores.add(conversorAEuro); 
+			conversores.add(conversorAEuro); */
 		}
+	}
+	
+	public void addConversor(Conversor con) {
+		this.conversores.add(con);
 	}
  
 	public List<Conversor> obtenerTiposDeConversores() { 

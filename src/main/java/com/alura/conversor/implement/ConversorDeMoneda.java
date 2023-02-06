@@ -14,7 +14,7 @@ public class ConversorDeMoneda implements Conversor {
 	public ConversorDeMoneda() { 
 		if(conversionDeMonedas == null) {
 			this.conversionDeMonedas= new ArrayList<Conversion>();
-			this.conversionDeMonedas.add(new Conversion("Boliviano","Dolar",
+			/*this.conversionDeMonedas.add(new Conversion("Boliviano","Dolar",
 						new BigDecimal("0.14"),new BigDecimal("6.97")));
 			this.conversionDeMonedas.add(new Conversion("Boliviano","Euro",
 						new BigDecimal("0.13"),new BigDecimal("7.52")));
@@ -23,7 +23,7 @@ public class ConversorDeMoneda implements Conversor {
 			this.conversionDeMonedas.add(new Conversion("Boliviano","Won",
 						new BigDecimal("178.94"),new BigDecimal("0.0056")));
 			this.conversionDeMonedas.add(new Conversion("Boliviano","Yen",
-						new BigDecimal("18.96"),new BigDecimal("0.053")));
+						new BigDecimal("18.96"),new BigDecimal("0.053")));*/
 		}
 	}
 	
@@ -45,6 +45,11 @@ public class ConversorDeMoneda implements Conversor {
 	@Override
 	public List<Conversion> obtenerTiposDeConversiones() { 
 		return this.conversionDeMonedas;
+	}
+
+	@Override
+	public void addTiposDeConversion(List<Conversion> conversionDeMonedas) {
+		this.conversionDeMonedas=conversionDeMonedas;
 	} 
 
 }

@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.alura.conversor.controller.ConversionesController;
 import com.alura.conversor.interfaces.Conversor;
+import com.alura.conversor.model.Conversion;
 
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +51,22 @@ public class MenuFrame  extends JFrame {
         configurarAccionesDelFormulario();
     }
 
-    private void configurarTablaDeContenido(Container container) { 
+    public MenuFrame(ConversionesController conversionesController) {
+    	  super("Menu");
+    	  
+    	  setController(conversionesController);
+
+          Container container = getContentPane();
+          setLayout(null);
+
+          configurarCamposDelMenu(container);
+
+          configurarTablaDeContenido(container);
+
+          configurarAccionesDelFormulario();
+	}
+
+	private void configurarTablaDeContenido(Container container) { 
         setSize(300, 130);
         setVisible(true);  
         setLocationRelativeTo(null);
@@ -98,6 +114,10 @@ public class MenuFrame  extends JFrame {
     	System.out.println(conversionesController.obtenerTiposDeConversores().indexOf(conversorSelecionado));
 		new FormularioValorFrame(conversionesController); 
 		this.dispose();
+	}
+
+	public void setController(ConversionesController conversionesController) {
+		this.conversionesController=conversionesController;
 	} 
 
 }

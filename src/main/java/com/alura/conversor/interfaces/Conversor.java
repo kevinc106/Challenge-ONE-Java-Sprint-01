@@ -12,5 +12,7 @@ public interface Conversor {
 	public String obtenerDescripcion();
 
 	public List<Conversion> obtenerTiposDeConversiones();
+
+	public void addTiposDeConversion(List<Conversion> conversionDeMonedas);
  
 }

@@ -73,32 +73,33 @@ public class SeleccionarConversionFrame extends JFrame{
 	}
 
 	private void mostrarResultado(BigDecimal resultado) {
-		String mensaje = String.format("%s %s -> %s %s", 
+		String mensaje = String.format("%s %s son %s %s", 
 				this.conversionesController.getValor(),
 				this.conversionesController.getConversion().getNombreBase(),
 				resultado,
 				this.conversionesController.getConversion().getNombreConvertido());
+		setVisible(false);
 		JOptionPane.showMessageDialog(this, mensaje, "Resultado", JOptionPane.INFORMATION_MESSAGE);
 	 
 	} 
 	
 	private void preguntarContinuar() {
-		int respuesta = JOptionPane.showConfirmDialog(this,"¿Desea continuar?","Seleccione una opcion",JOptionPane.YES_NO_CANCEL_OPTION);
+		int respuesta = JOptionPane.showConfirmDialog(this,"¿Desea continuar?","Seleccione una opción",JOptionPane.YES_NO_CANCEL_OPTION);
 		accionarConfirmacion(respuesta);
 	}
 
 	private void accionarConfirmacion(int respuesta) { 
         switch (respuesta) {
         case 0:
-        	new MenuFrame();
+        	new MenuFrame(this.conversionesController);
         	this.dispose();
             break;
         case 1:
-        	JOptionPane.showMessageDialog(this, "Programa terminado", "Chau", JOptionPane.INFORMATION_MESSAGE);
+        	JOptionPane.showMessageDialog(this, "Programa terminado", "Finalizando", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         	break;
         case 2:
-        	JOptionPane.showMessageDialog(this, "Programa terminado", "Chau", JOptionPane.INFORMATION_MESSAGE);
+        	JOptionPane.showMessageDialog(this, "Programa terminado", "Finalizando", JOptionPane.INFORMATION_MESSAGE);
         	this.dispose();
         	break;
         }

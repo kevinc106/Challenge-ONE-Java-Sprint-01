@@ -14,14 +14,14 @@ public class ConversorDeTiempo implements Conversor {
 	public ConversorDeTiempo() {
 		if(conversionDeTiempo == null) {
 			this.conversionDeTiempo= new ArrayList<Conversion>();
-			this.conversionDeTiempo.add(new Conversion("Dia","Hora",
+			/*this.conversionDeTiempo.add(new Conversion("Dia","Hora",
 						new BigDecimal("24"),new BigDecimal("0.0416667")));
 			this.conversionDeTiempo.add(new Conversion("Hora","Minuto",
 						new BigDecimal("60"),new BigDecimal("0.0166667")));
 			this.conversionDeTiempo.add(new Conversion("Minuto","Segundo",
 						new BigDecimal("60"),new BigDecimal("0.0166667")));
 			this.conversionDeTiempo.add(new Conversion("Segundo","Milisegundo",
-						new BigDecimal("1000"),new BigDecimal("0.001"))); 
+						new BigDecimal("1000"),new BigDecimal("0.001"))); */
 		}
 	}
 
@@ -43,6 +43,11 @@ public class ConversorDeTiempo implements Conversor {
 	@Override
 	public List<Conversion> obtenerTiposDeConversiones() { 
 		return conversionDeTiempo;
+	}
+
+	@Override
+	public void addTiposDeConversion(List<Conversion> conversionDeTiempo) {
+		this.conversionDeTiempo=conversionDeTiempo;
 	}
 
  

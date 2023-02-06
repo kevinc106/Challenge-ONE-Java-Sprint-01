@@ -19,6 +19,12 @@ public class Conversion {
 		this.fromValue = fromValue;
 	}
 
+	public Conversion(String nombreMonedaBase, String nombreMonedaConvertida, BigDecimal toValue) { 
+		this.nombreBase = nombreMonedaBase;
+		this.nombreAConvertir = nombreMonedaConvertida;
+		this.toValue = toValue; 
+	}
+
 	@Override
 	public String toString() {
 		return String.format("De %s a %s", nombreBase, nombreAConvertir);
