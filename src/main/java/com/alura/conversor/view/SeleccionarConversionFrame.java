@@ -30,14 +30,14 @@ public class SeleccionarConversionFrame extends JFrame{
 	private JButton botonConvertir;
 	private JButton botonCancel;
 
-	public SeleccionarConversionFrame(FormularioValorFrame formularioValorFrame, ConversionesController conversionesController) {
+	public SeleccionarConversionFrame(ConversionesController conversionesController) {
 		 
 		super(conversionesController.obtenerTituloConversor());
 		this.conversionesController = conversionesController;
 		
 		Container container = getContentPane();
         setLayout(null);
-        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         configurarCamposDelFormulario(container);
 
         configurarContenedor(container); 
@@ -45,34 +45,67 @@ public class SeleccionarConversionFrame extends JFrame{
         configurarAccionesDelFormulario();
 	}
 
-	private void configurarAccionesDelFormulario() {
-		/*comboOpcionConversion.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-				elegirConversion();
-			} 
-		});*/
+	private void configurarAccionesDelFormulario() { 
 		botonConvertir.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) { 
+        		elegirConversion();
              	realizarConversion();
+             	preguntarContinuar();
             }
         });
+		botonCancel.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			} 
+    	}); 
 	}
 
-	protected void elegirConversion() {
+	private void elegirConversion() {
 		Conversion ConversionElegida = (Conversion) comboOpcionConversion.getSelectedItem(); 
-		System.out.println(ConversionElegida);
+		//System.out.println(ConversionElegida);
 		this.conversionesController.setConversion(ConversionElegida);
 	}
 
-	protected void realizarConversion() { 
-		elegirConversion();
-		BigDecimal val = this.conversionesController.obtenerConversion(true);
-		System.out.println("Resultado "+ val);		 
-		 
+	private void realizarConversion() { 
+		BigDecimal resultado = this.conversionesController.obtenerConversion(true);
+		//System.out.println("Resultado "+ resultado);
+		mostrarResultado(resultado); 
+	}
+
+	private void mostrarResultado(BigDecimal resultado) {
+		String mensaje = String.format("%s %s -> %s %s", 
+				this.conversionesController.getValor(),
+				this.conversionesController.getConversion().getNombreBase(),
+				resultado,
+				this.conversionesController.getConversion().getNombreConvertido());
+		JOptionPane.showMessageDialog(this, mensaje, "Resultado", JOptionPane.INFORMATION_MESSAGE);
+	 
+	} 
+	
+	private void preguntarContinuar() {
+		int respuesta = JOptionPane.showConfirmDialog(this,"¿Desea continuar?","Seleccione una opcion",JOptionPane.YES_NO_CANCEL_OPTION);
+		accionarConfirmacion(respuesta);
+	}
+
+	private void accionarConfirmacion(int respuesta) { 
+        switch (respuesta) {
+        case 0:
+        	new MenuFrame();
+        	this.dispose();
+            break;
+        case 1:
+        	JOptionPane.showMessageDialog(this, "Programa terminado", "Chau", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        	break;
+        case 2:
+        	JOptionPane.showMessageDialog(this, "Programa terminado", "Chau", JOptionPane.INFORMATION_MESSAGE);
+        	this.dispose();
+        	break;
+        }
 	}
 
 	private void configurarContenedor(Container container) {
-		setSize(300, 130);
+		setSize(335, 130);
         setVisible(true);  
         setLocationRelativeTo(null);
 	}
@@ -81,19 +114,19 @@ public class SeleccionarConversionFrame extends JFrame{
 	 
 		int width = this.conversionesController.obtenerDescripcionConversor().length(); 
 		labelDescrpicion = new JLabel(this.conversionesController.obtenerDescripcionConversor()); 
-		labelDescrpicion.setBounds(50, 5,270, 20);
+		labelDescrpicion.setBounds(10, 5,width*100, 20);
 		labelDescrpicion.setForeground(Color.BLACK);
 		
 		comboOpcionConversion = new JComboBox<Object>();
-        comboOpcionConversion.setBounds(10, 25, 270, 25); 
+        comboOpcionConversion.setBounds(10, 25, 300, 25); 
         List<Conversion> conversiones = this.conversionesController.obtenerTiposDeConversionesConversor();
-        conversiones.forEach(conversor -> comboOpcionConversion.addItem(conversor));
+        conversiones.forEach(conversion -> comboOpcionConversion.addItem(conversion));
 		 
 		botonConvertir = new JButton("OK");
-        botonConvertir.setBounds(100,55,80,25);
+        botonConvertir.setBounds(70,55,80,25);
         
         botonCancel = new JButton("Cancel");
-        botonCancel.setBounds(210,55,80,25); 
+        botonCancel.setBounds(180,55,80,25); 
          
         container.add(labelDescrpicion);
         container.add(comboOpcionConversion);

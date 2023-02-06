@@ -45,6 +45,10 @@ public class ConversionesController {
 	public int getIndiceConversorSeleccionado() {
 		return indiceConversorSeleccionado;
 	}
+	
+	public Conversion getConversion() {
+		return this.conversionSeleccionada;
+	}
 
 	public void setIndiceConversorSeleccionado(int indiceConversorSeleccionado) {
 		this.indiceConversorSeleccionado = indiceConversorSeleccionado;
@@ -60,6 +64,10 @@ public class ConversionesController {
 
 	public List<Conversion> obtenerTiposDeConversionesConversor() {
 		return this.conversores.get(this.indiceConversorSeleccionado).obtenerTiposDeConversiones();
+	}
+
+	public BigDecimal getValor() {
+		return this.valor;
 	}
 
 }

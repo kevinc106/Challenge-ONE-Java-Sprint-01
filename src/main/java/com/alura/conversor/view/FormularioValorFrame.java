@@ -16,13 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import com.alura.conversor.controller.ConversionesController;
-import com.alura.conversor.interfaces.Conversor;
+import com.alura.conversor.controller.ConversionesController; 
 
 public class FormularioValorFrame extends JFrame{
 	 
-	private static final long serialVersionUID = 1L;
-	private Conversor conversor;
+	private static final long serialVersionUID = 1L; 
 	private ConversionesController conversionesController;
 	private JLabel labelIngresaCantidad;
 	private JTextField inputValor;
@@ -30,14 +28,14 @@ public class FormularioValorFrame extends JFrame{
 	private JButton botonCancel;
 	private JLabel labelIcono;
 
-	public FormularioValorFrame(MenuFrame menuFrame, ConversionesController conversionesController) {
+	public FormularioValorFrame(ConversionesController conversionesController) {
 		 
 		super("Input");
 		this.conversionesController = conversionesController;
 		
 		Container container = getContentPane();
         setLayout(null);
-        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         configurarCamposDelFormulario(container);
 
         configurarContenedor(container); 
@@ -62,20 +60,19 @@ public class FormularioValorFrame extends JFrame{
 		String valor = inputValor.getText();
 		if (valor.isBlank() || 
 				!valor.trim().matches("[+]?\\d+(\\.\\d+)?([Ee][+]?\\d+)?")) {
-			JOptionPane.showMessageDialog(this, "Valor no valido");
+			JOptionPane.showMessageDialog(this, "Valor no válido","Error",JOptionPane.INFORMATION_MESSAGE);
 			return;
         }else{
-        	System.out.println(new BigDecimal(valor.trim()));
-        	this.conversionesController.setValor(new BigDecimal(valor.trim()));
-        	//conversor.setValor(new BigDecimal(valor.trim()));
-    		setVisible(false);
-    		new SeleccionarConversionFrame(this,conversionesController);
+        	//System.out.println(new BigDecimal(valor.trim()));
+        	this.conversionesController.setValor(new BigDecimal(valor.trim()));  
+    		new SeleccionarConversionFrame(conversionesController); 
+    		this.dispose();
         } 
 	}
 
 	private void configurarCamposDelFormulario(Container container) {
-		
-		labelIcono = new JLabel("(?)");
+	 
+		labelIcono = new JLabel("?");
 		 
 		labelIcono.setBounds(20, 20, 20, 20);
 		

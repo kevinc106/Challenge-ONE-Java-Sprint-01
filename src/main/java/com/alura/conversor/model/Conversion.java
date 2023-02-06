@@ -23,7 +23,7 @@ public class Conversion {
 	public String toString() {
 		return String.format("De %s a %s", nombreBase, nombreAConvertir);
 	}
-	// 1  V -> toValue 
+	// 1  V -> toValue    2    V   -> fromValue
 	public BigDecimal obtenConversion(BigDecimal valor, boolean invertido) {
 		if(invertido) {			
 			return OperatorMath.getInstance().multiplicar(valor, toValue);
@@ -31,19 +31,19 @@ public class Conversion {
 		return OperatorMath.getInstance().multiplicar(valor, fromValue);
 	} 
 	 
-	public String getNombreMonedaBase() {
+	public String getNombreBase() {
 		return nombreBase;
 	}
 
-	public void setNombreMonedaBase(String nombreMonedaBase) {
+	public void setNombreBase(String nombreMonedaBase) {
 		this.nombreBase = nombreMonedaBase;
 	}
 
-	public String getNombreMonedaConvertida() {
+	public String getNombreConvertido() {
 		return nombreAConvertir;
 	}
 
-	public void setNombreMonedaConvertida(String nombreMonedaConvertida) {
+	public void setNombreConvertido(String nombreMonedaConvertida) {
 		this.nombreAConvertir = nombreMonedaConvertida;
 	}
 

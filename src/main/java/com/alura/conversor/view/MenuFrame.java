@@ -96,8 +96,8 @@ public class MenuFrame  extends JFrame {
     	int indiceConversor = conversionesController.obtenerTiposDeConversores().indexOf(conversorSelecionado);
 		conversionesController.setIndiceConversorSeleccionado(indiceConversor);
     	System.out.println(conversionesController.obtenerTiposDeConversores().indexOf(conversorSelecionado));
-		setVisible(false);
-		new FormularioValorFrame(this,conversionesController);
+		new FormularioValorFrame(conversionesController); 
+		this.dispose();
 	} 
 
 }
