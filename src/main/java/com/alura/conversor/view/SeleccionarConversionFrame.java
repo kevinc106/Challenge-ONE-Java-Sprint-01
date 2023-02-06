@@ -38,14 +38,14 @@ public class SeleccionarConversionFrame extends JFrame{
 		Container container = getContentPane();
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        configurarCamposDelFormulario(container);
+        configurarCamposDeLaSeleccionDeConversion(container);
 
-        configurarContenedor(container); 
+        configurarVentanaConversiones(container); 
 
-        configurarAccionesDelFormulario();
+        configurarAccionesDeLaVentana();
 	}
 
-	private void configurarAccionesDelFormulario() { 
+	private void configurarAccionesDeLaVentana() { 
 		botonConvertir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { 
         		elegirConversion();
@@ -67,7 +67,7 @@ public class SeleccionarConversionFrame extends JFrame{
 	}
 
 	private void realizarConversion() { 
-		BigDecimal resultado = this.conversionesController.obtenerConversion(true);
+		BigDecimal resultado = this.conversionesController.obtenerConversion();
 		//System.out.println("Resultado "+ resultado);
 		mostrarResultado(resultado); 
 	}
@@ -105,13 +105,14 @@ public class SeleccionarConversionFrame extends JFrame{
         }
 	}
 
-	private void configurarContenedor(Container container) {
+	private void configurarVentanaConversiones(Container container) {
 		setSize(335, 130);
         setVisible(true);  
+        setResizable(false);
         setLocationRelativeTo(null);
 	}
 
-	private void configurarCamposDelFormulario(Container container) { 
+	private void configurarCamposDeLaSeleccionDeConversion(Container container) { 
 	 
 		int width = this.conversionesController.obtenerDescripcionConversor().length(); 
 		labelDescrpicion = new JLabel(this.conversionesController.obtenerDescripcionConversor()); 

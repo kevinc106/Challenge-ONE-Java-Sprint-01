@@ -46,9 +46,9 @@ public class MenuFrame  extends JFrame {
 
         configurarCamposDelMenu(container);
 
-        configurarTablaDeContenido(container);
+        configurarVentanaMenu(container);
 
-        configurarAccionesDelFormulario();
+        configurarAccionesDelMenu();
     }
 
     public MenuFrame(ConversionesController conversionesController) {
@@ -61,14 +61,15 @@ public class MenuFrame  extends JFrame {
 
           configurarCamposDelMenu(container);
 
-          configurarTablaDeContenido(container);
+          configurarVentanaMenu(container);
 
-          configurarAccionesDelFormulario();
+          configurarAccionesDelMenu();
 	}
 
-	private void configurarTablaDeContenido(Container container) { 
+	private void configurarVentanaMenu(Container container) { 
         setSize(300, 130);
         setVisible(true);  
+        setResizable(false);
         setLocationRelativeTo(null);
         
     }
@@ -94,7 +95,7 @@ public class MenuFrame  extends JFrame {
         container.add(botonCancel); 
     }
 
-    private void configurarAccionesDelFormulario() {
+    private void configurarAccionesDelMenu() {
     	botonElegirConversion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 elegir(); 
@@ -111,7 +112,7 @@ public class MenuFrame  extends JFrame {
     	Conversor conversorSelecionado = (Conversor) comboTipoConversion.getSelectedItem();
     	int indiceConversor = conversionesController.obtenerTiposDeConversores().indexOf(conversorSelecionado);
 		conversionesController.setIndiceConversorSeleccionado(indiceConversor);
-    	System.out.println(conversionesController.obtenerTiposDeConversores().indexOf(conversorSelecionado));
+    	//System.out.println(conversorSelecionado);
 		new FormularioValorFrame(conversionesController); 
 		this.dispose();
 	}

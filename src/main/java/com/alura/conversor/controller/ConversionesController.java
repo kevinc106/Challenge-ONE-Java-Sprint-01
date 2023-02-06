@@ -18,11 +18,7 @@ public class ConversionesController {
 	
 	public ConversionesController() {
 		if(this.conversores==null) {
-			this.conversores = new ArrayList<>();
-			/*Conversor conversorADolar = new ConversorDeMoneda();
-			Conversor conversorAEuro = new ConversorDeTiempo(); 
-			conversores.add(conversorADolar);
-			conversores.add(conversorAEuro); */
+			this.conversores = new ArrayList<>(); 
 		}
 	}
 	
@@ -38,8 +34,8 @@ public class ConversionesController {
 		this.conversionSeleccionada=conversionSeleccionada;
 	} 
 		
-	public BigDecimal obtenerConversion(boolean invertido) { 
-		return this.conversionSeleccionada.obtenConversion(this.valor, invertido);
+	public BigDecimal obtenerConversion() { 
+		return this.conversionSeleccionada.obtenConversion(this.valor);
 	}
 
 	public void setValor(BigDecimal valor) {

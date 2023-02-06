@@ -38,7 +38,7 @@ public class FormularioValorFrame extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         configurarCamposDelFormulario(container);
 
-        configurarContenedor(container); 
+        configurarVentanaDelFormulario(container); 
 
         configurarAccionesDelFormulario();
 	}
@@ -73,8 +73,7 @@ public class FormularioValorFrame extends JFrame{
 	private void configurarCamposDelFormulario(Container container) {
 	 
 		labelIcono = new JLabel("?");
-		 
-		labelIcono.setBounds(20, 20, 20, 20);
+		labelIcono.setBounds(20, 25, 20, 20);
 		
 		labelIngresaCantidad = new JLabel("Ingresa el valor que deseas convertir :"); 
 		labelIngresaCantidad.setBounds(50, 5, 270, 20);
@@ -96,9 +95,10 @@ public class FormularioValorFrame extends JFrame{
         container.add(botonCancel); 
 	}
 
-	private void configurarContenedor(Container container) {
+	private void configurarVentanaDelFormulario(Container container) {
 		setSize(400, 130);
         setVisible(true);  
+        setResizable(false);
         setLocationRelativeTo(null);
 	}
 	
